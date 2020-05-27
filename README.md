@@ -38,10 +38,10 @@ way to retrieve products information will handle by the `userId`.
 
 | URL                                     | available HTTP method |
 | --------------------------------------- | --------------------- |
-| http://localhost:6000/products          | GET/POST/PUT/DELETE   |
-| http://localhost:6000/products/:id      | GET/POST/PUT/DELETE   |
-| http://localhost:6000/orders            | GET/POST/PUT/DELETE   |
-| http://localhost:6000/orders/:productId | GET/POST/PUT/DELETE   |
+| http://localhost:3006/products          | GET/POST/PUT/DELETE   |
+| http://localhost:3006/products/:id      | GET/POST/PUT/DELETE   |
+| http://localhost:3006/orders            | GET/POST/PUT/DELETE   |
+| http://localhost:3006/orders/:productId | GET/POST/PUT/DELETE   |
 |                                         |
 
 ## About Me
