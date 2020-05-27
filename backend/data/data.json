@@ -34,11 +34,7 @@
     "orders": [
         {
             "productId": 1,
-            "quantity": 7
-        },
-        {
-            "productId": 2,
-            "quantity": 1
+            "quantity": 12
         }
     ]
 }

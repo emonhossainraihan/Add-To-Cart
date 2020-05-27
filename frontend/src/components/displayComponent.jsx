@@ -1,61 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  Button,
-  Table,
-  CardSubtitle,
-} from 'reactstrap';
+import { Table } from 'reactstrap';
 
-const CheckoutItem = (props) => {
-  const addCart = props.addCart;
-  const removeCart = props.removeCart;
-  const deleteCart = props.deleteCart;
-  const { productId, quantity } = props.order;
-  const temp = props.products.filter((product) => product.id === productId);
+//! bring component
+import CheckoutItem from './checkoutComponent';
+import RenderProductItem from './renderComponent';
 
-  if (temp.length > 0) {
-    const { title, price } = temp[0];
-
-    return (
-      <tr>
-        <th scope="row">{productId}</th>
-        <td>{title}</td>
-        <td>
-          <span onClick={() => removeCart(productId)}>&#10094;&nbsp;</span>
-          <span>{quantity}</span>
-          <span onClick={() => addCart(productId)}>&nbsp;&#10095;</span>
-        </td>
-        <td>{quantity * price}</td>
-        <td>
-          <span onClick={() => deleteCart(productId)}>&#10005;</span>
-        </td>
-      </tr>
-    );
-  } else {
-    return null;
-  }
-};
-// remove: &#10005;  increase:  &#10094;  decase:  &#10095;
-function RenderProductItem(props) {
-  const { imageUrl, title, id, price } = props.product;
-  const addCart = props.handleCart;
-
-  return (
-    <div style={{ padding: '0.5rem 1rem' }}>
-      <Card className="text-center">
-        <CardImg top src={imageUrl} alt={title} />
-        <CardBody>
-          <CardTitle>{title}</CardTitle>
-          <CardSubtitle>price: &#36;{price}</CardSubtitle>
-          <Button onClick={() => addCart(id)}>Add to Cart</Button>
-        </CardBody>
-      </Card>
-    </div>
-  );
-}
 const DisplayComponent = (props) => {
   const [orders, setorders] = useState([]);
   async function fetchToCart(productId) {
