@@ -26,6 +26,7 @@ productRouter
     if (req.body !== null) {
       if (Products.some((product) => product.id === req.body.id)) {
         //! this product already exits in our array
+
         err = new Error('Product with id:' + req.body.id + ' already exit');
         err.status = 404;
         return next(err);
@@ -40,6 +41,74 @@ productRouter
       }
     } else {
       err = new Error('Body didnot contain product information');
+      err.status = 404;
+      return next(err);
+    }
+  })
+  .put((req, res, next) => {
+    res.statusCode = 403;
+    res.end('PUT operation not supported on /products');
+  })
+
+  //! beware to use this route. It will permanently delete all the products
+
+  .delete((req, res, next) => {
+    Products.splice(0, Products.length);
+    fs.writeFileSync(data_path, JSON.stringify(parsedData, null, 4));
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(Products);
+  });
+
+productRouter
+  .route('/:id')
+
+  .get((req, res, next) => {
+    const id = parseInt(req.params.id);
+    if (id !== null) {
+      if (Products.some((product) => product.id === id)) {
+        const index = Products.map((product) => product.id).indexOf(id);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Products[index]);
+      } else {
+        err = new Error('This product isnot exit');
+        err.status = 404;
+        return next(err);
+      }
+    } else {
+      err = new Error('Couldnot find product with this id');
+      err.status = 404;
+      return next(err);
+    }
+  })
+
+  .post((req, res, next) => {
+    res.statusCode = 403;
+    res.end('POST operation not supported on /products ' + req.params.id);
+  })
+
+  .delete((req, res, next) => {
+    const id = parseInt(req.params.id);
+    if (id !== null) {
+      if (Products.some((product) => product.id === id)) {
+        //! remove the specific product
+
+        const index = Products.map((product) => product.id).indexOf(id);
+
+        Products.splice(index, 1);
+
+        fs.writeFileSync(data_path, JSON.stringify(parsedData, null, 4));
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Products);
+      } else {
+        err = new Error('This product isnot exit');
+        err.status = 404;
+        return next(err);
+      }
+    } else {
+      err = new Error('Couldnot find product with this id');
       err.status = 404;
       return next(err);
     }

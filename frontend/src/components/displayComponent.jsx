@@ -72,7 +72,6 @@ const DisplayComponent = (props) => {
       }
     });
   });
-  console.log(total);
 
   return (
     <div style={{ display: 'flex', padding: '2rem' }}>
@@ -100,7 +99,7 @@ const DisplayComponent = (props) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th>Id</th>
               <th>Name</th>
               <th>Quantity</th>
               <th>Price</th>
