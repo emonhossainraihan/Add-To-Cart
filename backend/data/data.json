@@ -1,0 +1,44 @@
+{
+    "products": [
+        {
+            "title": "camera",
+            "imageUrl": "https://source.unsplash.com/gGgoDJRD2WM/200x200",
+            "id": 1,
+            "price": 1200
+        },
+        {
+            "title": "laptop",
+            "imageUrl": "https://source.unsplash.com/t9DooibgMEk/200x200",
+            "id": 2,
+            "price": 2400
+        },
+        {
+            "title": "iPhone",
+            "imageUrl": "https://source.unsplash.com/fZR5yolj_rU/200x200",
+            "id": 3,
+            "price": 2000
+        },
+        {
+            "title": "jacket",
+            "imageUrl": "https://source.unsplash.com/P0W27GRvyww/200x200",
+            "id": 4,
+            "price": 150
+        },
+        {
+            "title": "sunglasses",
+            "imageUrl": "https://source.unsplash.com/1-nx1QR5dTE/200x200",
+            "id": 5,
+            "price": 100
+        }
+    ],
+    "orders": [
+        {
+            "productId": 1,
+            "quantity": 7
+        },
+        {
+            "productId": 2,
+            "quantity": 1
+        }
+    ]
+}
