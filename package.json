@@ -1,0 +1,24 @@
+{
+  "name": "complete",
+  "version": "1.0.0",
+  "description": "A minimalistic \"Add To Cart &amp; Place Order\" System for an E-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "concurrently \"cd backend/ && npm install \" \"cd frontend/ && yarn install \" ",
+    "start": "concurrently \"cd backend/ && npm run watch \" \"cd frontend/ && yarn start \" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emonhossainraihan/add-to-cart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emonhossainraihan/add-to-cart/issues"
+  },
+  "homepage": "https://github.com/emonhossainraihan/add-to-cart#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
