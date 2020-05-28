@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'reactstrap';
 
+import { clearOrders } from '../fetchingData';
 //! bring component
 import CheckoutItem from './checkoutComponent';
 import RenderProductItem from './renderComponent';
 
 const DisplayComponent = (props) => {
   const [orders, setorders] = useState([]);
+
   async function fetchToCart(productId) {
     const res = await fetch(`http://localhost:3000/orders/${productId}`, {
       method: 'POST',
@@ -65,6 +66,7 @@ const DisplayComponent = (props) => {
 
   var total = 0;
 
+  //! calculate total price => products + orders
   props.products.forEach((product) => {
     orders.forEach((order) => {
       if (order.productId === product.id) {
@@ -74,7 +76,7 @@ const DisplayComponent = (props) => {
   });
 
   return (
-    <div style={{ display: 'flex', padding: '2rem' }}>
+    <div style={{ display: 'flex', padding: '2rem', flexFlow: 'row wrap' }}>
       <div
         style={{
           display: 'flex',
@@ -94,43 +96,54 @@ const DisplayComponent = (props) => {
             })
           : null}
       </div>
-      <div style={{ background: '#ffc600' }}>
-        <div style={{ textAlign: 'center' }}>Your Cart</div>
-        <Table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.length !== 0
-              ? orders.map((order, i) => {
-                  return (
-                    <CheckoutItem
-                      key={i}
-                      order={order}
-                      products={props.products}
-                      addCart={fetchToCart}
-                      removeCart={discardFromCart}
-                      deleteCart={deleteCart}
-                    />
-                  );
-                })
-              : null}
-            <tr>
-              <th scope="row">-</th>
-              <td>Total:</td>
-              <td></td>
+      <div style={{ width: '30%' }}>
+        <h3 className="card-title">Cart</h3>
+        <hr />
+        {orders.length !== 0
+          ? orders.map((order, i) => {
+              return (
+                <CheckoutItem
+                  key={i}
+                  order={order}
+                  products={props.products}
+                  addCart={fetchToCart}
+                  removeCart={discardFromCart}
+                  deleteCart={deleteCart}
+                />
+              );
+            })
+          : null}
+        <hr />
+        {orders.length !== 0 ? (
+          <div>
+            <h4>
+              <small>Total Amount:</small>
+              <span className="float-right">${total}</span>
+            </h4>
+            <hr />
+          </div>
+        ) : (
+          ''
+        )}
 
-              <td>{total}</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </Table>
+        {orders.length !== 0 ? (
+          <>
+            <button className="btn btn-success float-right">Checkout</button>
+
+            <button
+              className="btn btn-danger float-right"
+              style={{ marginRight: '10px' }}
+              onClick={() => clearOrders(setorders)}
+            >
+              Clear Cart
+            </button>
+            <br />
+            <br />
+            <br />
+          </>
+        ) : (
+          <h3 className="text-warning">No item on the cart</h3>
+        )}
       </div>
     </div>
   );

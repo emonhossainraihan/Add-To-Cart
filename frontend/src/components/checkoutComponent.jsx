@@ -11,19 +11,37 @@ const CheckoutItem = (props) => {
     const { title, price } = temp[0];
 
     return (
-      <tr>
-        <th scope="row">{productId}</th>
-        <td>{title}</td>
-        <td>
-          <span onClick={() => removeCart(productId)}>&#10094;&nbsp;</span>
-          <span>{quantity}</span>
-          <span onClick={() => addCart(productId)}>&nbsp;&#10095;</span>
-        </td>
-        <td>{quantity * price}</td>
-        <td>
-          <span onClick={() => deleteCart(productId)}>&#10005;</span>
-        </td>
-      </tr>
+      <div className="card" style={{ marginBottom: '10px' }}>
+        <div className="card-body">
+          <h4 className="card-title">{title}</h4>
+          <h5 className="card-text">
+            <small>price: </small>${price}&#x2717;{quantity}=$
+            {price * quantity}
+          </h5>
+          <span
+            style={{ cursor: 'pointer' }}
+            onClick={() => removeCart(productId)}
+          >
+            &#10094;&nbsp;
+          </span>
+          <span className="card-text text-success">
+            <small>Quantity: </small>
+            {quantity}
+          </span>
+          <span
+            style={{ cursor: 'pointer' }}
+            onClick={() => addCart(productId)}
+          >
+            &nbsp;&#10095;
+          </span>
+          <button
+            className="btn btn-sm btn-warning float-right"
+            onClick={() => deleteCart(productId)}
+          >
+            Remove from cart
+          </button>
+        </div>
+      </div>
     );
   } else {
     return null;
