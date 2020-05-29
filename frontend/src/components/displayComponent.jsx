@@ -97,7 +97,15 @@ const DisplayComponent = (props) => {
           : null}
       </div>
       <div style={{ width: '30%' }}>
-        <h3 className="card-title">Cart</h3>
+        <h3 className="card-title">
+          Cart &nbsp;
+          <img
+            src={'https://i.imgur.com/FSjziNK.png'}
+            alt={'cart-icon'}
+            width={35}
+            height={35}
+          />
+        </h3>
         <hr />
         {orders.length !== 0
           ? orders.map((order, i) => {

@@ -1,11 +1,22 @@
 {
-  "name": "complete",
+  "name": "add-to-cart",
   "version": "1.0.0",
+  "engines": {
+    "node": "v12.9.1",
+    "npm": "6.10.2",
+    "yarn": "1.22.0"
+  },
   "description": "A minimalistic \"Add To Cart &amp; Place Order\" System for an E-commerce website",
   "main": "index.js",
   "scripts": {
-    "prestart": "concurrently \"cd backend/ && npm install \" \"cd frontend/ && yarn install \" ",
-    "start": "concurrently \"cd backend/ && npm run watch \" \"cd frontend/ && yarn start \" "
+    "client": "cd frontend/ && yarn start",
+    "server": "cd backend/ && npm run watch",
+    "build": "cd frontend/ && npm run build",
+    "preinstall": "cd backend/ && npm install",
+    "postinstall": "cd frontend/ && yarn install",
+    "start": "concurrently \"cd backend/ && npm run watch \" \"cd frontend/ && yarn start \" ",
+    "heroku-prebuild": "cd backend/ && npm install --no-shrinkwrap",
+    "heroku-postbuild": "cd frontend/ && yarn install --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",

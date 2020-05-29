@@ -6,6 +6,10 @@
 
 ## Available Scripts
 
+### `npm install`
+
+This will install all the dependencies for this project. You don't need to manually install any dependencies for backend and frontend seperately. If face any issue then please delete yarn.lock file and try again.
+
 ### `npm start`
 
 This will run `npm run watch` and `yarn start` concurrently including changing directory commands and `npm install` for installing their dependencies.
